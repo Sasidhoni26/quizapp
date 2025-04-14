@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { post } from "../../../utils/api";
 
-type OptionKeys = "A" | "B" | "C" | "D";
 type FormData = {
   question: string;
   optionA: string;
@@ -28,7 +27,7 @@ const CreateQuestion = () => {
     solution: "",
   });
 
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState<FormData[]>([]);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -45,9 +44,9 @@ const CreateQuestion = () => {
     setOpenDropdown(null);
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const updatedQuestions: any = [...questions, formData];
+    const updatedQuestions: FormData[] = [...questions, formData];
     setQuestions(updatedQuestions);
     console.log(formData);
     const editedFormData = { ...formData };

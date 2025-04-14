@@ -1,4 +1,3 @@
-import Link from "next/link"; // For navigation
 import Card from "../components/Card";
 
 const GroupFour: React.FC = () => {

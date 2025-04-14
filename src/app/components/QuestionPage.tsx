@@ -44,11 +44,8 @@ const QuestionPage: React.FC = () => {
       setTimeLeft((prev) => prev - 1);
     }, 1000);
     return () => clearInterval(timer); // Cleanup on unmount or re-render
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeLeft]);
-
-  // Format time for display
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
 
   // Handle selecting an option (replaces QuestionComponent logic)
   const handleOptionSelect = (optionIndex: number) => {

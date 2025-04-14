@@ -10,7 +10,7 @@ export default function TNPSCQuiz() {
   const searchParams = useSearchParams();
   const collectionName = searchParams?.get("collectionName");
 
-  const { data: questions, error } = useSWR(
+  const { data: questions } = useSWR(
     `${process.env.API_URL}/s1/quiz/auth/getQuestionsByCollection?collectionName=${collectionName}`,
     fetcher
   );
@@ -20,7 +20,6 @@ export default function TNPSCQuiz() {
   const [selected, setSelected] = useState<string | null>(null);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [showResults, setShowResults] = useState(false);
-  const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(questions?.length * 60 || 600); // 30 minutes in seconds
 
   // Timer effect
@@ -38,6 +37,7 @@ export default function TNPSCQuiz() {
     }, 1000);
 
     return () => clearInterval(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showResults]);
 
   const formatTime = () => {
@@ -74,15 +74,15 @@ export default function TNPSCQuiz() {
       : answers;
 
     // Calculate score
-    const correctAnswers = (questions || [])?.reduce(
-      (count: number, q: any, index: number) => {
-        return finalAnswers[index] === q.answer ? count + 1 : count;
-      },
-      0
-    );
+    // const correctAnswers = (questions || [])?.reduce(
+    //   (count: number, q: any, index: number) => {
+    //     return finalAnswers[index] === q.answer ? count + 1 : count;
+    //   },
+    //   0
+    // );
 
     setAnswers(finalAnswers);
-    setScore(correctAnswers);
+    // setScore(correctAnswers);
     setShowResults(true);
   };
 
@@ -120,24 +120,24 @@ export default function TNPSCQuiz() {
 
             {/* Question Review */}
             <div className="space-y-3 mb-4">
-              {questions.map((q: any, index: number) => (
+              {questions.map((q: QuestionCardProps, index: number) => (
                 <div
                   key={index}
                   className={`p-3 rounded-lg border text-sm ${
-                    answers[index] === q.answer
+                    answers[index] === q?.answer
                       ? "border-green-200 bg-green-50"
                       : "border-red-200 bg-red-50"
                   }`}
                 >
-                  <div className="font-medium">{q.question}</div>
+                  <div className="font-medium">{q?.question}</div>
                   <div className="mt-1">
                     <span className="font-semibold">Your answer:</span>{" "}
                     {answers[index] || "Not answered"}
                   </div>
-                  {answers[index] !== q.answer && (
+                  {answers[index] !== q?.answer && (
                     <div className="mt-1">
                       <span className="font-semibold">Correct answer:</span>{" "}
-                      {q.answer}
+                      {q?.answer}
                     </div>
                   )}
                 </div>
@@ -152,7 +152,7 @@ export default function TNPSCQuiz() {
                 setAnswers({});
                 setShowResults(false);
                 setTimeLeft(1800);
-                setScore(0);
+                // setScore(0);
               }}
               className="w-full mt-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
             >
@@ -164,7 +164,7 @@ export default function TNPSCQuiz() {
     );
   }
 
-  if (!questions || questions.length === 0) {
+  if (!questions || questions?.length === 0) {
     return (
       <div className="h-[95vh] flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-200">
         <div className="text-center text-xl font-bold text-gray-700">
@@ -187,7 +187,7 @@ export default function TNPSCQuiz() {
                   {formatTime()}
                 </div>
                 <div className="bg-white/10 px-2 py-1 rounded-full text-xs">
-                  Q: {currentQ + 1}/{questions.length}
+                  Q: {currentQ + 1}/{questions?.length}
                 </div>
               </div>
             </div>
