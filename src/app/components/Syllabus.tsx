@@ -27,7 +27,7 @@ const ComingSoon: React.FC = () => {
         {/* Home Button */}
         <div className="mt-6">
           <Link href="/home">
-            <button className="px-6 cursor-pointer py-3 bg-blue-600 text-white rounded-full text-lg hover:bg-blue-500 transition duration-300">
+            <button className="px-6 cursor-pointer py-3 bg-defaultColorCode text-white rounded-full text-lg hover:bg-defaultColorCode transition duration-300">
               Go to Home Page
             </button>
           </Link>

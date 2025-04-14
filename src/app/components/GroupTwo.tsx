@@ -14,21 +14,21 @@ const GroupTwo: React.FC = () => {
             title="Tamil"
             description="Test your knowledge in Tamil with our detailed quizzes."
             imageUrl="/images/temple.png"
-            link="#tamil-quiz"
+            link={`/quiz_test?collectionName=group2_tamil`}
             imgClassName="w-48 h-48 object-cover"
           />
           <Card
             title="Aptitude"
             description="Sharpen your skills with aptitude quizzes tailored for TNPSC."
             imageUrl="/images/aptitude.png"
-            link="#aptitude-quiz"
+            link={`/quiz_test?collectionName=group2_aptitude`}
             imgClassName="w-48 h-48 object-cover"
           />
           <Card
             title="General Studies"
             description="Prepare for general studies with our wide range of quizzes."
             imageUrl="/images/generalstudies.png"
-            link="#general-studies-quiz"
+            link={`/quiz_test?collectionName=group2_gk`}
             imgClassName="w-48 h-48 object-cover"
           />
         </div>

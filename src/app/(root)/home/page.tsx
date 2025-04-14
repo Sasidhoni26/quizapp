@@ -1,23 +1,33 @@
+"use client";
 // pages/index.tsx
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 const Home = () => {
   return (
     <div className="font-sans bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-blue-700 text-white text-center py-20">
-        <h2 className="text-4xl font-bold">
+      <section className="bg-gradient-to-r from-blue-800 to-blue-600 text-white text-center py-16 px-6 rounded-lg shadow-lg">
+        <h2 className="text-3xl font-bold leading-tight mb-6">
           Prepare for TNPSC Exams with Interactive Quizzes
         </h2>
-        <p className="mt-4 text-lg">
-          Ace your exams with our well-structured quizzes designed for TNPSC
-          aspirants
+        <p className="mt-4 text-lg max-w-xl mx-auto mb-8">
+          Ace your exams with our well-structured quizzes designed specifically
+          for TNPSC aspirants. Test your knowledge and improve your skills!
         </p>
-        <button className="mt-6 px-6 py-3 bg-yellow-400 text-blue-800 rounded-full text-xl hover:bg-yellow-300">
-          Start Quiz Now
-        </button>
+        <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-12">
+          <Link href={"/groupiv"}>
+            <button className="w-full sm:w-auto px-8 py-3 bg-yellow-500 text-blue-900 rounded-full text-lg font-medium shadow-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 mb-4 sm:mb-0">
+              Start Quiz Now
+            </button>
+          </Link>
+          <Link href={`/admin`}>
+            <button className="w-full sm:w-auto px-8 py-3 bg-yellow-500 text-blue-900 rounded-full text-lg font-medium shadow-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105">
+              Admin
+            </button>
+          </Link>
+        </div>
       </section>
 
       {/* Cards Section */}
@@ -155,10 +165,10 @@ const Home = () => {
 
               {/* Explore Button */}
               <Link href={"/otherexams"}>
-              <button className="cursor-pointer mt-6 px-6 flex justify-center items-center w-full py-2 bg-blue-600 text-white rounded-full text-lg hover:bg-blue-500">
-                Explore
-              </button>
-            </Link>
+                <button className="cursor-pointer mt-6 px-6 flex justify-center items-center w-full py-2 bg-blue-600 text-white rounded-full text-lg hover:bg-blue-500">
+                  Explore
+                </button>
+              </Link>
             </div>
           </div>
         </div>
